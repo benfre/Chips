@@ -1,34 +1,27 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Physical Interface &mdash; Chips 2.0.1 documentation</title>
-    
+    <title>Physical Interface &#8212; Chips 2.2.1 documentation</title>
     <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '2.0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    
     <link rel="shortcut icon" href="../_static/chips.ico"/>
-    <link rel="top" title="Chips 2.0.1 documentation" href="../index.html" />
-    <link rel="up" title="Reference Manual" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tutorial" href="../tutorial/index.html" />
     <link rel="prev" title="C Libraries" href="c_library.html" /> 
-  </head>
-  <body role="document">
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -39,10 +32,13 @@
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="../tutorial/index.html" title="Tutorial"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
           <a href="c_library.html" title="C Libraries"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Chips 2.0.1 documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference Manual</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Chips 2.2.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Reference Manual</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -58,7 +54,26 @@ synchronous interconnect bus. The details of the interconnect bus are described
 here. This section will be of most use to developers who want to integrate a
 <em>Chips</em> design into a larger design, or to generate an HDL wrapper to support a
 <em>Chips</em> design in new hardware.</p>
-<a class="reference internal image-reference" href="../_images/aafig-964c97c0ff44e0138deebb77010f7acfce473aa2.svg"><img height="266.0" src="../_images/aafig-964c97c0ff44e0138deebb77010f7acfce473aa2.svg" width="854.0" /></a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rst</span> <span class="o">&gt;-</span><span class="n">o</span><span class="o">------------------------------+</span>
+      <span class="o">|</span>                              <span class="o">|</span>
+<span class="n">clk</span> <span class="o">&gt;-+--</span><span class="n">o</span><span class="o">------------------------+</span>  <span class="o">|</span>
+      <span class="o">|</span>  <span class="o">|</span>                        <span class="o">|</span>  <span class="o">|</span>
+      <span class="o">|</span>  <span class="o">|</span>   <span class="o">+-----------+</span>        <span class="o">|</span>  <span class="o">|</span>      <span class="o">+--------------+</span>
+      <span class="o">|</span>  <span class="o">|</span>   <span class="o">|</span> <span class="n">TX</span>        <span class="o">|</span>        <span class="o">|</span>  <span class="o">|</span>      <span class="o">|</span> <span class="n">RX</span>           <span class="o">|</span>
+      <span class="o">|</span>  <span class="o">+--&gt;+</span>           <span class="o">|</span>        <span class="o">|</span>  <span class="o">+-----&gt;+</span>              <span class="o">|</span>
+      <span class="o">|</span>      <span class="o">|</span>           <span class="o">|</span>        <span class="o">|</span>         <span class="o">|</span>              <span class="o">|</span>
+      <span class="o">+-----&gt;+</span>           <span class="o">|</span>        <span class="o">+--------&gt;+</span>              <span class="o">|</span>
+             <span class="o">|</span>           <span class="o">|</span>                  <span class="o">|</span>              <span class="o">|</span>
+             <span class="o">|</span>           <span class="o">|</span> <span class="s2">&quot;&lt;bus_name&gt;&quot;</span>     <span class="o">|</span>              <span class="o">|</span>
+             <span class="o">|</span>           <span class="o">+=================&gt;+</span>              <span class="o">|</span>
+             <span class="o">|</span>           <span class="o">|</span> <span class="s2">&quot;&lt;bus_name&gt;_stb&quot;</span> <span class="o">|</span>              <span class="o">|</span>
+             <span class="o">|</span>           <span class="o">+-----------------&gt;+</span>              <span class="o">|</span>
+             <span class="o">|</span>           <span class="o">|</span> <span class="s2">&quot;&lt;bus_name&gt;_ack&quot;</span> <span class="o">|</span>              <span class="o">|</span>
+             <span class="o">|</span>           <span class="o">+&lt;-----------------+</span>              <span class="o">|</span>
+             <span class="o">|</span>           <span class="o">|</span>                  <span class="o">|</span>              <span class="o">|</span>
+             <span class="o">+-----------+</span>                  <span class="o">+--------------+</span>
+</pre></div>
+</div>
 <div class="section" id="global-signals">
 <h2>Global Signals<a class="headerlink" href="#global-signals" title="Permalink to this headline">¶</a></h2>
 <table border="1" class="docutils">
@@ -110,12 +125,12 @@ here. This section will be of most use to developers who want to integrate a
 <tr class="row-odd"><td>&lt;bus_name&gt;_stb</td>
 <td>TX to RX</td>
 <td>bit</td>
-<td>&#8216;1&#8217; indicates that payload data is valid and TX is ready.</td>
+<td>‘1’ indicates that payload data is valid and TX is ready.</td>
 </tr>
 <tr class="row-even"><td>&lt;bus_name&gt;_ack</td>
 <td>TX to RX</td>
 <td>bit</td>
-<td>&#8216;1&#8217; indicates that RX is ready.</td>
+<td>‘1’ indicates that RX is ready.</td>
 </tr>
 </tbody>
 </table>
@@ -140,7 +155,7 @@ here. This section will be of most use to developers who want to integrate a
 <li>The receiver <strong>may</strong> delay a transaction by inserting wait states until the transmitter indicates that data is available.</li>
 <li>The transmitter <strong>shall</strong> not delay a transaction by inserting wait states until the receiver is ready to accept data. Deadlock would occur if both the transmitter and receiver delayed a transaction until the other was ready.</li>
 </ol>
-<a class="reference internal image-reference" href="../_images/aafig-ff4d391a93a37b5866520a04baaa4935303a4509.svg"><img height="770.0" src="../_images/aafig-ff4d391a93a37b5866520a04baaa4935303a4509.svg" width="1330.0" /></a>
+<a class="reference internal image-reference" href="../_images/aafig-ff4d391a93a37b5866520a04baaa4935303a4509.svg"><img alt="../_images/aafig-ff4d391a93a37b5866520a04baaa4935303a4509.svg" height="762.0" src="../_images/aafig-ff4d391a93a37b5866520a04baaa4935303a4509.svg" width="1322.0" /></a>
 </div>
 </div>
 
@@ -153,7 +168,7 @@ here. This section will be of most use to developers who want to integrate a
             <p class="logo"><a href="../index.html">
               <img class="logo" src="../_static/chips.png" alt="Logo"/>
             </a></p>
-  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Physical Interface</a><ul>
 <li><a class="reference internal" href="#global-signals">Global Signals</a></li>
@@ -166,24 +181,26 @@ here. This section will be of most use to developers who want to integrate a
   <h4>Previous topic</h4>
   <p class="topless"><a href="c_library.html"
                         title="previous chapter">C Libraries</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../tutorial/index.html"
+                        title="next chapter">Tutorial</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/user_manual/interface.txt"
+      <li><a href="../_sources/user_manual/interface.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -200,15 +217,18 @@ here. This section will be of most use to developers who want to integrate a
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="../tutorial/index.html" title="Tutorial"
+             >next</a> |</li>
+        <li class="right" >
           <a href="c_library.html" title="C Libraries"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Chips 2.0.1 documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >Reference Manual</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Chips 2.2.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Reference Manual</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2014, Jonathan P Dawson.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.3.
+        &#169; Copyright 2014, Jonathan P Dawson.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>
