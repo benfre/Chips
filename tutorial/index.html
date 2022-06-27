@@ -61,25 +61,24 @@ file count.c and add the following:</p>
 </pre></div>
 </div>
 <p>You can convert C components into Verilog components using the C2Verilog
-compiler. The <em>iverilog</em> option causes the generated Verilog component to be
+compiler. The verilog output is <em>test.v</em> file. The <em>iverilog</em> option causes the generated Verilog component to be
 compiled using Icarus Verilog. The <em>run</em> option causes simulation to be run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~$ c2verilog iverilog run test.c
-1 (report (int) at line: 5 in file: /home/ben/test.c)
-2 (report (int) at line: 5 in file: /home/ben/test.c)
-3 (report (int) at line: 5 in file: /home/ben/test.c)
-4 (report (int) at line: 5 in file: /home/ben/test.c)
-5 (report (int) at line: 5 in file: /home/ben/test.c)
-6 (report (int) at line: 5 in file: /home/ben/test.c)
-7 (report (int) at line: 5 in file: /home/ben/test.c)
-8 (report (int) at line: 5 in file: /home/ben/test.c)
-9 (report (int) at line: 5 in file: /home/ben/test.c)
-10 (report (int) at line: 5 in file: /home/ben/test.c)
+  1 (report (int) at line: 5 in file: /home/ben/test.c)
+  2 (report (int) at line: 5 in file: /home/ben/test.c)
+  3 (report (int) at line: 5 in file: /home/ben/test.c)
+  4 (report (int) at line: 5 in file: /home/ben/test.c)
+  5 (report (int) at line: 5 in file: /home/ben/test.c)
+  6 (report (int) at line: 5 in file: /home/ben/test.c)
+  7 (report (int) at line: 5 in file: /home/ben/test.c)
+  8 (report (int) at line: 5 in file: /home/ben/test.c)
+  9 (report (int) at line: 5 in file: /home/ben/test.c)
+ 10 (report (int) at line: 5 in file: /home/ben/test.c)
 /home/ben/test.v:308: $finish called at 4675 (1s)
 </pre></div>
 </div>
-<p>When a design is reset, execution starts with the last function defined in
-the C file. This need not be called <em>main</em>. The name of the last function
-will be used as the name for the generated Verilog component. The C program will
+<p>When a design is reset, execution starts with the <em>main</em> function defined in
+the C file. The C program will
 appear to execute in sequence, although the compiler may execute instructions
 concurrently if it does not affect the outcome of the program. This will allow
 your component to take advantage of the inherent parallelism present in a hardware
@@ -129,7 +128,7 @@ for one another.</p>
 <p>We can generate an adder like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">added</span><span class="p">(){</span>
         <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
-                <span class="n">fputc</span><span class="p">(</span><span class="n">input_a</span><span class="p">()</span><span class="o">+</span><span class="n">input_b</span><span class="p">(),</span> <span class="n">z</span><span class="p">);</span>
+                <span class="n">fputc</span><span class="p">(</span><span class="n">fgetc</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="n">fgetc</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">z</span><span class="p">);</span>
         <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -137,7 +136,7 @@ for one another.</p>
 <p>Or a divider like this (yes, you can synthesise division):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">divider</span><span class="p">(){</span>
         <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
-                <span class="n">fputc</span><span class="p">(</span><span class="n">input_a</span><span class="p">()</span><span class="o">/</span><span class="n">input_b</span><span class="p">(),</span> <span class="n">z</span><span class="p">);</span>
+                <span class="n">fputc</span><span class="p">(</span><span class="n">fgetc</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">/</span> <span class="n">fgetc</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">z</span><span class="p">);</span>
         <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -148,7 +147,7 @@ for one another.</p>
         <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
                 <span class="n">temp</span> <span class="o">=</span> <span class="n">fgetc</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
                 <span class="n">fputc</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
-                <span class="n">fputc</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="n">z</span><span class="p">);</span>
+                <span class="n">fputc</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
         <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -159,7 +158,7 @@ for one another.</p>
         <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
                 <span class="n">temp</span> <span class="o">=</span> <span class="n">fgetc</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
                 <span class="n">fputc</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="n">z</span><span class="p">);</span>
-                <span class="n">temp</span> <span class="o">=</span> <span class="n">input_b</span><span class="p">();</span>
+                <span class="n">temp</span> <span class="o">=</span> <span class="n">fgetc</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
                 <span class="n">fputc</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="n">z</span><span class="p">);</span>
         <span class="p">}</span>
 <span class="p">}</span>

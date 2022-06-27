@@ -54,26 +54,7 @@ synchronous interconnect bus. The details of the interconnect bus are described
 here. This section will be of most use to developers who want to integrate a
 <em>Chips</em> design into a larger design, or to generate an HDL wrapper to support a
 <em>Chips</em> design in new hardware.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rst</span> <span class="o">&gt;-</span><span class="n">o</span><span class="o">------------------------------+</span>
-      <span class="o">|</span>                              <span class="o">|</span>
-<span class="n">clk</span> <span class="o">&gt;-+--</span><span class="n">o</span><span class="o">------------------------+</span>  <span class="o">|</span>
-      <span class="o">|</span>  <span class="o">|</span>                        <span class="o">|</span>  <span class="o">|</span>
-      <span class="o">|</span>  <span class="o">|</span>   <span class="o">+-----------+</span>        <span class="o">|</span>  <span class="o">|</span>      <span class="o">+--------------+</span>
-      <span class="o">|</span>  <span class="o">|</span>   <span class="o">|</span> <span class="n">TX</span>        <span class="o">|</span>        <span class="o">|</span>  <span class="o">|</span>      <span class="o">|</span> <span class="n">RX</span>           <span class="o">|</span>
-      <span class="o">|</span>  <span class="o">+--&gt;+</span>           <span class="o">|</span>        <span class="o">|</span>  <span class="o">+-----&gt;+</span>              <span class="o">|</span>
-      <span class="o">|</span>      <span class="o">|</span>           <span class="o">|</span>        <span class="o">|</span>         <span class="o">|</span>              <span class="o">|</span>
-      <span class="o">+-----&gt;+</span>           <span class="o">|</span>        <span class="o">+--------&gt;+</span>              <span class="o">|</span>
-             <span class="o">|</span>           <span class="o">|</span>                  <span class="o">|</span>              <span class="o">|</span>
-             <span class="o">|</span>           <span class="o">|</span> <span class="s2">&quot;&lt;bus_name&gt;&quot;</span>     <span class="o">|</span>              <span class="o">|</span>
-             <span class="o">|</span>           <span class="o">+=================&gt;+</span>              <span class="o">|</span>
-             <span class="o">|</span>           <span class="o">|</span> <span class="s2">&quot;&lt;bus_name&gt;_stb&quot;</span> <span class="o">|</span>              <span class="o">|</span>
-             <span class="o">|</span>           <span class="o">+-----------------&gt;+</span>              <span class="o">|</span>
-             <span class="o">|</span>           <span class="o">|</span> <span class="s2">&quot;&lt;bus_name&gt;_ack&quot;</span> <span class="o">|</span>              <span class="o">|</span>
-             <span class="o">|</span>           <span class="o">+&lt;-----------------+</span>              <span class="o">|</span>
-             <span class="o">|</span>           <span class="o">|</span>                  <span class="o">|</span>              <span class="o">|</span>
-             <span class="o">+-----------+</span>                  <span class="o">+--------------+</span>
-</pre></div>
-</div>
+<a class="reference internal image-reference" href="../_images/aafig-964c97c0ff44e0138deebb77010f7acfce473aa2.svg"><img alt="../_images/aafig-964c97c0ff44e0138deebb77010f7acfce473aa2.svg" height="258.0" src="../_images/aafig-964c97c0ff44e0138deebb77010f7acfce473aa2.svg" width="846.0" /></a>
 <div class="section" id="global-signals">
 <h2>Global Signals<a class="headerlink" href="#global-signals" title="Permalink to this headline">¶</a></h2>
 <table border="1" class="docutils">

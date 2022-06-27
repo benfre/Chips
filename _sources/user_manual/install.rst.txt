@@ -17,8 +17,8 @@ Install from github
 
 ::
 
-        $ cd Chips-2.0
-        $ sudo python setup install
+        $ cd Chips
+        $ sudo python3 setup.py install
 
 
 Install from PyPi
@@ -26,7 +26,7 @@ Install from PyPi
 
 ::
 
-        $ pip3 install pychips
+        $ pip3 install chips-python
 
 
 Icarus Verilog
