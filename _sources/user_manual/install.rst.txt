@@ -7,7 +7,7 @@ Download (github)
 You can download the 
 `source <https://github.com/benfre/Chips/archive/master.zip>`_ 
 from the
-`Git Hub <https://github.com/benfre/Chips>`_ 
+`GitHub <https://github.com/benfre/Chips>`_ 
 homepage. Alternatively clone the project using git::
 
     ~$ git clone --recursive https://github.com/benfre/Chips.git
