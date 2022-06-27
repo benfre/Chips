@@ -53,15 +53,15 @@
 <p>In this example, we calculate the sqrt of a number using <a class="reference external" href="http://en.wikipedia.org/wiki/Newton's_method#Square_root_of_a_number">Newton’s method</a>.
 The problem of finding the square root can be expressed as:</p>
 <div class="math">
-<p><span class="math">n = x^2</span></p>
+<p><img src="../_images/math/ae8fd483e6f475ed5eaf163ec3fdd92509600c27.png" alt="n = x^2"/></p>
 </div><p>Which can be rearranged as:</p>
 <div class="math">
-<p><span class="math">f(x) = x^2 - n</span></p>
+<p><img src="../_images/math/5ec458e5ab5deb309826ba07a4cd3106ac2bac6f.png" alt="f(x) = x^2 - n"/></p>
 </div><p>Using Newton’s method, we can find numerically the approximate point at which
-<span class="math">f(x) = 0</span>. Repeated applications of the following expression yield
+<img class="math" src="../_images/math/6504e3f0bdd624bb75e2c6f760ac542612e8e8fa.png" alt="f(x) = 0"/>. Repeated applications of the following expression yield
 increasingly accurate approximations of the Square root:</p>
 <div class="math">
-<p><span class="math">f(x_k) = x_{k-1} - \frac{{x_{k-1}}^2 - n}{2x_{k-1}}</span></p>
+<p><img src="../_images/math/b0d8dbf57edf5369cd97d10da5996b79b364a7d7.png" alt="f(x_k) = x_{k-1} - \frac{{x_{k-1}}^2 - n}{2x_{k-1}}"/></p>
 </div><p>Turning this into a practical solution, the following code calculates the square
 root of a floating point number. An initial approximation is refined using
 Newton’s method until further refinements agree to within a small degree.</p>
@@ -97,7 +97,7 @@ Newton’s method until further refinements agree to within a small degree.</p>
 </div>
 <p>Note that the code isn’t entirely robust, and cannot handle special cases such
 as Nans, infinities or negative numbers.  A simple test calculates
-<span class="math">\sqrt{x}</span> where <span class="math">-10 &lt; x &lt; 10</span>.</p>
+<img class="math" src="../_images/math/43ea8ebfd9ca993ad8f9968121ecafb21460d20a.png" alt="\sqrt{x}"/> where <img class="math" src="../_images/math/f28fab9d71f48c535f14b108f40d9255015d11e1.png" alt="-10 &lt; x &lt; 10"/>.</p>
 <img alt="../_images/example_1.png" src="../_images/example_1.png" />
 </div>
 <div class="section" id="approximating-sine-and-cosine-functions-using-taylor-series">
@@ -105,11 +105,11 @@ as Nans, infinities or negative numbers.  A simple test calculates
 <p>In this example, we calculate an approximation of the cosine functions using
 the <a class="reference external" href="http://en.wikipedia.org/wiki/Taylor_series">Taylor series</a>:</p>
 <div class="math">
-<p><span class="math">\cos (x) = \sum_{n=0}^{\infty} \frac{(-1)^n}{(2n)!} x^{2n}</span></p>
+<p><img src="../_images/math/4fa98e08d91f057cff731b4f22394581eeb30ebd.png" alt="\cos (x) = \sum_{n=0}^{\infty} \frac{(-1)^n}{(2n)!} x^{2n}"/></p>
 </div><p>The following example uses the Taylor Series approximation to generate the Sine
 and Cosine functions. Successive terms of the taylor series are calculated
 until successive approximations agree to within a small degree. A Sine
-function is also synthesised using the identity <span class="math">sin(x) \equiv cos(x-\pi/2)</span></p>
+function is also synthesised using the identity <img class="math" src="../_images/math/681507a9350456315665f2887186f480e01b744b.png" alt="sin(x) \equiv cos(x-\pi/2)"/></p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* taylor.c */</span>
 <span class="cm">/* Jonathan P Dawson */</span>
 <span class="cm">/* 2013-12-23 */</span>
@@ -184,7 +184,7 @@ function is also synthesised using the identity <span class="math">sin(x) \equiv
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>A simple test calculates Sine and Cosine for the range <span class="math">-2\pi &lt;= x &lt;= 2\pi</span>.</p>
+<p>A simple test calculates Sine and Cosine for the range <img class="math" src="../_images/math/56737038e9fc9094f99c6dcd30f35c7499c57c6d.png" alt="-2\pi &lt;= x &lt;= 2\pi"/>.</p>
 <img alt="../_images/example_2.png" src="../_images/example_2.png" />
 </div>
 <div class="section" id="implement-quicksort">
@@ -364,7 +364,7 @@ possible to implement the function using an explicitly created stack.</p>
 <h2>Fast Fourier Transform<a class="headerlink" href="#fast-fourier-transform" title="Permalink to this headline">¶</a></h2>
 <p>This example builds on the Taylor series example. We assume that the sin and
 cos routines have been placed into a library of math functions math.h, along
-with the definitions of <span class="math">\pi</span>, M_PI.</p>
+with the definitions of <img class="math" src="../_images/math/b7793e4f08d00aca47e272dcdfeb70f933dac222.png" alt="\pi"/>, M_PI.</p>
 <p>The <a class="reference external" href="http://en.wikipedia.org/wiki/Fast_Fourier_transform">Fast Fourier Transform (FFT)</a>
 is an efficient method of decomposing discretely sampled signals into a frequency spectrum, it
 is one of the most important algorithms in Digital Signal Processing (DSP).
